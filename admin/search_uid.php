@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("connection.php");
-
+echo $conn;
 // Set the uid in session if download button is clicked
 if (isset($_POST['download'])) {
     $_SESSION['uid'] = $_POST['uid'];
