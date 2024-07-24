@@ -56,7 +56,7 @@ session_start();
             <form method="post" action="search_uid.php" class="mb-4"> 
                 <div class="form-row">
                     <div class="col-md-4">
-                        <input type="text" id="uid1" class="form-control" value="DSOYSWIMM" disabled/>  
+                        <input type="text" id="uid1" class="form-control" value="DSOYSWIMM-" disabled/>  
                     </div>
                     <div class="col-md-4">
                         <input type="text" id="uid2" class="form-control" onblur="uidMix()" maxlength="6" required/>  
