@@ -6,9 +6,9 @@
     // $dbname = "sh6ete423chsoft_admin";
     
     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "swimming_sports";
+    $username = "dsoyavatmal";
+    $password = "0{T14;!UMc.#";
+    $dbname = "dsoyavatmal_swimming_sports";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
