@@ -1,12 +1,12 @@
 <?php
 session_start();
-include("../php/connection.php");
+include("connection.php");
 
 // Set the uid in session if download button is clicked
 if (isset($_POST['download'])) {
     $_SESSION['uid'] = $_POST['uid'];
     // Redirect to the fitness_form_table.php or handle the action accordingly
-    header("Location: ../admin/fitness_form_table.php");
+    header("Location: fitness_form_table.php");
     exit();
 }
 
@@ -58,6 +58,6 @@ while ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 // Redirect to search_data.php after executing the query
-header("Location: ../admin/search_data.php");
+header("Location: search_data.php");
 exit();
 ?>
