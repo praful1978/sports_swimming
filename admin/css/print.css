@@ -1,0 +1,28 @@
+/* Styles for print */
+@media print {
+    body {
+        font-family: Times, serif;
+        color: #000;
+    }
+    
+    header, footer, nav {
+        display: none; /* Hide header, footer, and navigation for print */
+    }
+    
+    main {
+        padding: 0;
+    }
+
+    article {
+        margin: 0;
+    }
+
+    h1, h2 {
+        color: #000;
+    }
+    
+    p {
+        font-size: 12pt;
+        line-height: 1.6;
+    }
+}

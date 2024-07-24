@@ -1,0 +1,15 @@
+table{
+    border: 2px solid rgb(15, 2, 2);
+    background-color: aqua;
+ 
+}
+td{
+    border: 2px solid rgb(15, 2, 2);
+    
+}
+th{
+  
+    border: 2px solid rgb(15, 2, 2);
+    background-color: rgb(41, 189, 132);
+}
+ 

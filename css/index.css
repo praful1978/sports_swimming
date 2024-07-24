@@ -1,0 +1,36 @@
+body{
+  background-image: url("");
+}
+.nav-item {
+  font-size:18px;
+  text-transform:uppercase;
+  height:82px;
+  line-height:64px;
+}
+.flare {
+  background:#ef662b;
+}
+.flare a.nav-link {
+  color:#070707 
+}
+.topbarElements > div:nth-of-type(1){
+  font-size:48px;
+  margin:12px 32px;
+  color:#ef662b
+}
+@media screen and (min-width:1040px){
+  .flare { margin-right:-15px; }
+}
+@media screen and (max-width:1029px){
+  .navbar-nav {
+    color:black;
+    margin-bottom:15px;
+    text-align:center
+  }
+  .nav-item {
+    color:black;  
+    background : hsla(0, 54%, 77%, 0.984);
+    margin:2px;
+  }
+ 
+}

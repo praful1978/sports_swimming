@@ -1,0 +1,10 @@
+﻿TEMPLATE ID,TELEMARKETER,TEMPLATE NAME,TYPE,HEADER,CATEGORY,REGISTERED DLT,REQUESTED ON,STATUS DATE,CREATED BY,BLACKLISTED BY,APPROVAL STATUS,STATUS,TEMPLATE MESSAGE,CONSENT TYPE,REASON
+'1107172087526030804',--,Ending monthly subscription,Transactional,DSOYTL,Other,Vodafone Idea,13-Jul-2024 18:24:20,--,ghanshyam,--,Pending,--,"""Hello {#var#},
+This is a message regarding your Swimming Registration. Your subscription will end on date {#var#}. Please subscribe for new batch.
+From: 
+District Sports Office, Yavatmal""",--,--
+'1107172087511555478',--,SWIMMING OTP,Transactional,DSOYTL,Other,Vodafone Idea,13-Jul-2024 18:21:56,--,ghanshyam,--,Pending,--,OTP for Login on Swimming website is {#var#} and valid upto {#var#} minutes. Do not share this OTP to anyone for security reasons.,--,--
+'1107172087394303076',--,SWIMMING,Transactional,DSOYTL,Other,Vodafone Idea,13-Jul-2024 18:02:23,13-Jul-2024 18:29:23,ghanshyam,--,Pending,--,"""Hello {#var#},
+This is a message regarding your Swimming Registration. Your UID number is:{#var#}. 
+From: 
+District Sports Office{#var#}""",--,Should Be Service Implicit
