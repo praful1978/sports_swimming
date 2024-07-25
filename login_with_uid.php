@@ -27,7 +27,7 @@ $_SESSION['uid'] = $uid;
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
               <div class="card shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-5 text-center">
-                  <h3 class="mb-5">Please Sign in</h3>
+                  <h3 class="mb-5">Sign in</h3>
                   <form method="POST" action="check_uid.php"> 
                     <label class="form-label mb-4">Enter UID NUMBER</label> 
                     <div data-mdb-input-init class="form-outline input-group">
