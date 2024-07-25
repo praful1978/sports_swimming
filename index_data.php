@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
     // Execute the prepared statement
     if ($stmt->execute()) {
         // Registration successful
-        header("Location: index.php");
+        header("Location: index.html");
         exit(); // Ensure script stops after redirection
     } else {
         if ($stmt->errno == 1062) { // MySQL error code for duplicate entry
