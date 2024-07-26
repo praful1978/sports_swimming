@@ -31,7 +31,7 @@ if (isset($_SESSION['uid'])) {
           <div class="bg-white p-5 rounded-3 shadow-sm border">
           
           <form method="post" action="verify_send_otp.php">
-          <h3><span class="badge badge-primary mt-2 p-2 "><?php echo $uid; ?></span></h3> 
+          <h3><span class="badge badge-primary mt-2 p-2 "><?php  echo "UID: " . htmlspecialchars($uid); ?></span></h3> 
               <p class="text-center text-success" style="font-size: 5.5rem;"><i class="fa-solid fa-envelope-circle-check"></i></p>
               <p class="text-center text-center h5">Please check your email</p>
               <p class="text-muted text-center">We've sent a code on your registered mobile number <label id="lastFourDigits"></label></p>
