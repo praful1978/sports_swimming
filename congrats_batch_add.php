@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_POST["submit"])) {
-    $_SESSION['UID'] = $_POST['uid'];
+    $_SESSION['uid'] = $_POST['uid'];
     $_SESSION['first_name'] = $_POST['first_name'];
     $_SESSION['last_name'] = $_POST['last_name'];
 
