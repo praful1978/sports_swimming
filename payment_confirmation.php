@@ -5,7 +5,7 @@ include 'connection.php'; // Ensure this file contains the database connection c
 
 // if (isset($_POST["submit"])) {
     // Store form data in session variables
-    $_SESSION['UID'] = $_POST['uid'];
+    $_SESSION['uid'] = $_POST['uid'];
     $_SESSION['first_name'] = $_POST['firstname'];
     $_SESSION['last_name'] = $_POST['lastname'];
     $_SESSION['batchtime'] = $_POST['batchtime'];

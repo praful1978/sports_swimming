@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'connection.php';
-$uid= $_SESSION['UID']; 
+$uid= $_SESSION['uid']; 
 $first_name=  $_SESSION['first_name'];  
 $last_name =$_SESSION['last_name'] ; 
 $batchtime =$_SESSION['batchtime'] ; 
