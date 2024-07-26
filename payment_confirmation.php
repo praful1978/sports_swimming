@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php'; // Ensure this file contains the database connection code
+include 'connection.php';
 
 
  if (isset($_POST["submit"])) {
