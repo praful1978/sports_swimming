@@ -67,40 +67,7 @@ $formattedDate = $currentDate->format('d/m/Y');
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Payment receipt</title>
-    <script>
-    //     function myFunction() {
-    //         var uid = localStorage.getItem("UID");
-    //         if (uid) {
-    //             document.getElementById("uid").innerHTML = uid;
-    //         }
-    //         var batchFee = localStorage.getItem("Batch Fee");
-    //         if (batchFee) {
-    //             document.getElementById("batch_fee").innerHTML = batchFee;
-    //         }
-    //         var batchTime = localStorage.getItem("Batch Time");
-    //         if (batchTime) {
-    //             document.getElementById("batch_time").innerHTML = batchTime;
-    //         }
-    //     }
-
-    //     function getdata() {
-    //         var batchTime = localStorage.getItem("Batch Time");
-    //         if (batchTime) {
-    //             document.getElementById("swimming_time").value = batchTime;
-    //         }
-
-    //         var batchFee = localStorage.getItem("Batch Fee");
-    //         if (batchFee) {
-    //             document.getElementById("swimming_fee").value = batchFee;
-    //         }
-
-    //         var uidNumber = localStorage.getItem("UID");
-    //         if (uidNumber) {
-    //             document.getElementById("uid_number").value = uidNumber;
-    //         }
-    //     }
-
-    </script>
+ 
     <style>
 
 th,td{
