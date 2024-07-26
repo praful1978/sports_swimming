@@ -145,42 +145,55 @@ if (isset($_POST["submit"])) {
     $year = $orderdate[2];
     $expirydate = $day . "/" . $month . "/" . $year;
 
-    // Database connection
-    include 'connection.php';
+  // Database connection
+include 'connection.php';
 
-    // Prepare the SQL statements
-    $stmt1 = $conn->prepare("INSERT INTO registration (uid, first_name, last_name, mobile_number, payment, payment_date, transaction_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt2 = $conn->prepare("INSERT INTO signup (uid, first_name, last_name, gender, blood_group, mobile_number, user_relative, parents_mobile_number, email_address, birth, age, permanent_address, enrol_date, expiry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+// Prepare the SQL statements
+$stmt1 = $conn->prepare("INSERT INTO registration (uid, first_name, last_name, mobile_number, payment, payment_date, transaction_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt2 = $conn->prepare("INSERT INTO signup (uid, first_name, last_name, gender, blood_group, mobile_number, user_relative, parents_mobile_number, email_address, birth, age, permanent_address, enrol_date, expiry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Bind parameters to the SQL statement
-    $stmt1->bind_param("sssssss", $uid, $first_name, $last_name, $mobile_number, $amount, $payment_date, $transaction_id);
-    $stmt2->bind_param("ssssssssssssss", $uid, $first_name, $last_name, $gender, $bloodgroup, $mobile_number, $relative, $parents_num, $email_address, $birth, $age, $permanent_address, $currentDate, $expirydate);
+// Bind parameters to the SQL statement
+$stmt1->bind_param("sssssss", $uid, $first_name, $last_name, $mobile_number, $amount, $payment_date, $transaction_id);
+$stmt2->bind_param("ssssssssssssss", $uid, $first_name, $last_name, $gender, $bloodgroup, $mobile_number, $relative, $parents_num, $email_address, $birth, $age, $permanent_address, $currentDate, $expirydate);
 
+// Execute the first prepared statement
+$success1 = $stmt1->execute();
+if (!$success1) {
+    die("Error executing first query: " . $stmt1->error);
+}
 
-// Execute the prepared statement
-if ($stmt1->execute() && $stmt2->execute()) {
+// Execute the second prepared statement
+$success2 = $stmt2->execute();
+
+if ($success1 && $success2) {
     // Registration successful
     header("Location: success_reg.php");
     exit(); // Ensure script stops after redirection
 } else {
+    // Check for duplicate entry error
     if ($stmt2->errno == 1062) { // MySQL error code for duplicate entry
         $errorMessage = "Error: Duplicate entry. This email or mobile number is already registered.";
         echo "<script type='text/javascript'>alert('$errorMessage');</script>";
         header("Location: register_uid_number.php");
+        exit(); // Ensure script stops after redirection
     } else {
-        $errorMessage = "Error updating record: " .  mysqli_error($conn);
+        // Other errors
+        $errorMessage = "Error updating record: " . $stmt2->error;
+        echo "<script type='text/javascript'>alert('$errorMessage');</script>";
+        header("Location: register_uid_number.php");
+        exit(); // Ensure script stops after redirection
     }
 }
 
-// Close the statement
-$stmt1->close();
-$stmt2->close();
-
-} else {
-$errorMessage = "No form data submitted.";
+// Close the prepared statements only if they were successfully created
+if ($stmt1) {
+    $stmt1->close();
+}
+if ($stmt2) {
+    $stmt2->close();
 }
 
-// Close the connection
+// Close the database connection
 $conn->close();
 ob_end_flush(); // Flush output buffer and send output
 
@@ -189,4 +202,5 @@ echo "<script type='text/javascript'>alert('$errorMessage');</script>";
 }
 
 ob_end_flush(); // Flush output buffer and send output
- 
+}
+?>
