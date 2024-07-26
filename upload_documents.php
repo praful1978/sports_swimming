@@ -3,7 +3,7 @@
 session_start();
 
 $_SESSION['uid'];
-
+echo $_SESSION['uid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +61,6 @@ $_SESSION['uid'];
         
         <!-- Form for UID -->
         <div class="form-group">
-          <label for="uid"><strong>Enter your UID</strong></label>
           <h3><span class="badge badge-primary mt-2 p-2 "><?php echo $_SESSION['uid']; ?></span></h3> 
         </div>
         
