@@ -3,7 +3,7 @@ session_start();
 include 'connection.php'; // Ensure this file contains the database connection code
 
 
-// if (isset($_POST["submit"])) {
+ if (isset($_POST["submit"])) {
     // Store form data in session variables
     $_SESSION['uid'] = $_POST['uid'];
     $_SESSION['first_name'] = $_POST['firstname'];
@@ -44,5 +44,5 @@ include 'connection.php'; // Ensure this file contains the database connection c
 
     // Close the database connection
     $conn->close();
-// }
+}
 ?>
