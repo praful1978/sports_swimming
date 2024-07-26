@@ -65,7 +65,7 @@ $_SESSION['uid'] ;
         <!-- Form for UID -->
         <div class="form-group">
           <label for="uid"><strong>Enter your UID</strong></label>
-          <input type="text" id="uid" class="form-control" name="uid" value=' <?php echo $_SESSION['uid']; ?>' disabled>
+          <input type="text" id="uid" class="form-control" name="uid" value=<?php echo $_SESSION['uid']; ?> disabled>
         </div>
         
         <!-- Form for Upload Aadhaar PDF -->
