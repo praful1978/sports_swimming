@@ -98,6 +98,7 @@ if (isset($_POST["submit"])) {
     <img src="buckey.png" alt="Bouquet of Flowers">
     <p id="congrats-message">You have achieved a great milestone.</p>
    <input type="submit" class="close-btn" ></input> 
+   </form>
 </div>
 
   
