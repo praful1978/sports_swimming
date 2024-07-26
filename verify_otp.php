@@ -30,7 +30,7 @@ if (isset($_SESSION['uid'])) {
         <div class="col-md-5 mt-5">
           <div class="bg-white p-5 rounded-3 shadow-sm border">
           <div class="form-group">
-          <h2><?php echo $_SESSION['uid']; ?></span></h2> 
+          <h4><?php echo $_SESSION['uid']; ?></span></h4> 
         </div>
           <form method="post" action="verify_send_otp.php">
       
