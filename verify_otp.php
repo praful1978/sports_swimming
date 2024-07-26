@@ -17,6 +17,7 @@ $_SESSION['uid'];
   <link href="css/verify_otp.css" rel="stylesheet">
 </head>
 <body>
+<h3><span class="badge badge-primary mt-2 p-2 "><?php echo $_SESSION['uid']; ?></span></h3> 
   <div class="container height-100 d-flex justify-content-center align-items-center">
     <div class="container p-5">
       <div class="row">
