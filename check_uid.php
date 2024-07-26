@@ -4,7 +4,7 @@ session_start();
 // Check if uid is set and not empty
 if (isset($_POST['uid']) && !empty($_POST['uid'])) {
     $uid = $_POST['uid']; // get uid from login_With_uid.php
-echo $uid;
+
     include 'connection.php';
 
     // Prepare and bind the SQL statement with a parameterized query
