@@ -1,11 +1,9 @@
 
-<?php 
+<?php
 session_start();
- 
- if(isset($_POST['uid'])){
- $uid = $_POST['uid'];
- echo $uid;
- }
+
+$_SESSION['uid'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +62,7 @@ session_start();
         <!-- Form for UID -->
         <div class="form-group">
           <label for="uid"><strong>Enter your UID</strong></label>
-          <input type="text" id="uid" class="form-control" name="uid" value='<?php echo $uid; ?>' disabled>
+          <h3><span class="badge badge-primary mt-2 p-2 "><?php echo $_SESSION['uid']; ?></span></h3> 
         </div>
         
         <!-- Form for Upload Aadhaar PDF -->
