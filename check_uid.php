@@ -4,7 +4,7 @@ session_start();
 // Check if uid is set and not empty
 if (isset($_POST['uid']) && !empty($_POST['uid'])) {
     $uid = $_POST['uid']; // get uid from login_With_uid.php
-
+echo $uid;
     include 'connection.php';
 
     // Prepare and bind the SQL statement with a parameterized query
@@ -36,7 +36,7 @@ if (isset($_POST['uid']) && !empty($_POST['uid'])) {
          } else {
             echo '<script type="text/javascript">'; 
             echo 'alert("Your Enter Wrong UID. Please Enter Correct UID");'; 
-            echo 'window.location.href = "login_with_uid.php";';
+            echo 'window.location.href = "login_with_uid.php"';
             echo '</script>';
 
             // // You can handle what happens if no user is found, such as showing an error message or redirecting back to the login page
