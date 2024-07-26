@@ -29,7 +29,7 @@ if (isset($_SESSION['uid'])) {
         <div class="col-md-3"></div>
         <div class="col-md-5 mt-5">
           <div class="bg-white p-5 rounded-3 shadow-sm border">
-          <h3><span class="badge badge-primary mt-2 p-2 "><?php  echo "UID: " . htmlspecialchars($uid); ?></span></h3> 
+          <h3><span class="badge badge-primary mt-2 p-2 "><?php echo $_SESSION['uid']; ?></span></h3> 
           <form method="post" action="verify_send_otp.php">
       
               <p class="text-center text-success" style="font-size: 5.5rem;"><i class="fa-solid fa-envelope-circle-check"></i></p>
