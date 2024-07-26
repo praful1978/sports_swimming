@@ -2,12 +2,11 @@
 <?php 
 session_start();
  
-if(isset($_POST['uid'])){
-$uid = $_POST['uid'];
+// if(isset($_POST['uid'])){
+// $uid = $_POST['uid'];
 
-$_SESSION['uid'] = $uid;
-
-}
+$_SESSION['uid'] ;
+// = $uid;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +65,7 @@ $_SESSION['uid'] = $uid;
         <!-- Form for UID -->
         <div class="form-group">
           <label for="uid"><strong>Enter your UID</strong></label>
-          <input type="text" id="uid" class="form-control" name="uid" value=' <?php echo $uid; ?>' disabled>
+          <input type="text" id="uid" class="form-control" name="uid" value=' <?php echo $_SESSION['uid']; ?>' disabled>
         </div>
         
         <!-- Form for Upload Aadhaar PDF -->
