@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-$_SESSION['uid'];
-
+// Check if 'uid' is set in the session
+if (isset($_SESSION['uid'])) {
+    $uid = $_SESSION['uid'];
+    echo "UID: " . htmlspecialchars($uid);
+} else {
+    echo "No UID found in session.";
+}
 ?>
 
 <!DOCTYPE html>
