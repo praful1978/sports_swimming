@@ -13,3 +13,8 @@ or push an existing repository from the command line
 git remote add origin https://github.com/praful1978/sports_swimming.git
 git branch -M main
 git push -u origin main
+
+
+INSERT INTO yojana (name,cast,post,gaon,taluka,prapt_aprapt,yojana,year)
+SELECT column1, column2, column3,column4,column5,column6,column7,column8
+FROM combine_yadi;
