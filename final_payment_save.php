@@ -24,9 +24,7 @@ if ($result->num_rows > 0) {
     $uid = $row['uid'];
     $permanent_address = $row["permanent_address"];
 
-} else {
-    echo "0 results";
-}
+} 
     // Assign session variables to local variables
     $uid = $_POST['uid'];
     $first_name = $_POST['firstname'];
