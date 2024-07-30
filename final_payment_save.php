@@ -11,20 +11,7 @@ session_start();
  
  }
  
- include('connection.php');
- $uid = $_POST['uid'];
-$sql = "SELECT * FROM signup WHERE uid = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $uid);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $uid = $row['uid'];
-    $permanent_address = $row["permanent_address"];
-
-} 
+ 
     // Assign session variables to local variables
     $uid = $_POST['uid'];
     $first_name = $_POST['firstname'];
