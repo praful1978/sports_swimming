@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 
     // Execute SQL query and check for errors
     if ($conn->query($sql) === TRUE) {
-        // echo "New record created successfully";
+     echo "New record created successfully";
         header('Location: card.php');
       
     } else {
