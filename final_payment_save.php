@@ -1,14 +1,14 @@
 <?php
-//  if (isset($_POST["submit"])) {
-//     // Store form data in session variables
-//     $_SESSION['uid'] = $_POST['uid'];
-//     $_SESSION['first_name'] = $_POST['firstname'];
-//     $_SESSION['last_name'] = $_POST['lastname'];
-//     $_SESSION['batchtime'] = $_POST['batchtime'];
-//     $_SESSION['batchfee'] = $_POST['batchfee'];
-//     $_SESSION['transactionid'] = $_POST['transactionid'];
+ if (isset($_POST["submit"])) {
+    // Store form data in session variables
+    $_SESSION['uid'] = $_POST['uid'];
+    $_SESSION['first_name'] = $_POST['firstname'];
+    $_SESSION['last_name'] = $_POST['lastname'];
+    $_SESSION['batchtime'] = $_POST['batchtime'];
+    $_SESSION['batchfee'] = $_POST['batchfee'];
+    $_SESSION['transactionid'] = $_POST['transactionid'];
  
-//  }
+ }
  
  include('connection.php');
  $uid = $_POST['uid'];
