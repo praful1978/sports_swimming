@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 //  if (isset($_POST["submit"])) {
 //     // Store form data in session variables
 //     $_SESSION['uid'] = $_POST['uid'];
@@ -22,9 +20,9 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $_SESSION['uid'] = $row['uid'];
-    $_SESSION['permanent_address'] = $row["permanent_address"];
-    echo $_SESSION['$permanent_address'];
+    $uid = $row['uid'];
+    $permanent_address = $row["permanent_address"];
+
 } else {
     echo "0 results";
 }
