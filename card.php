@@ -1,36 +1,49 @@
 <?php
 session_start();
-include 'connection.php';
-$uid= $_SESSION['uid']; 
-$first_name=  $_SESSION['first_name'];  
-$last_name =$_SESSION['last_name'] ; 
-$batchtime =$_SESSION['batchtime'] ; 
-$batchfee = $_SESSION['batchfee'] ; 
-$transactionid = $_SESSION['transactionid'] ; 
-$permanent_address = $_SESSION['permanent_address'] ; 
+
+
+// if (isset($_POST["submit"])) {
+//     $_SESSION['uid'] = $_POST['uid'];
+//     $_SESSION['first_name'] = $_POST['first_name'];
+//     $_SESSION['last_name'] = $_POST['last_name'];
+//     $_SESSION['batchtime'] = $_POST['batchtime'];
+//     $_SESSION['batchfee'] = $_POST['batchfee'];
+//     $_SESSION['transactionid'] = $_POST['transactionid'];
+   
+
+// echo $_SESSION['batchtime'];
+// echo $_SESSION['batchfee'];
+// echo  $_SESSION['transactionid'];
+// $permanent_address = $_SESSION['permanent_address'] ; 
     // Sanitize input variables
-    $uid = $conn->real_escape_string($uid);
-    $first_name = $conn->real_escape_string($first_name);
-    $last_name = $conn->real_escape_string($last_name);
-    $batchtime = $conn->real_escape_string($batchtime);
-    $batchfee = $conn->real_escape_string($batchfee);
-    $paymentid = $conn->real_escape_string($transactionid);
-    $permanent_address =$conn->real_escape_string($permanent_address);
+
+    //  $uid = $conn->real_escape_string($uid);
+    // $first_name = $conn->real_escape_string($first_name);
+    // $last_name = $conn->real_escape_string($last_name);
+    // $batchtime = $conn->real_escape_string($batchtime);
+    // $batchfee = $conn->real_escape_string($batchfee);
+    // $paymentid = $conn->real_escape_string($transactionid);
+    // $permanent_address =$conn->real_escape_string($permanent_address);
  // Include database connection
 // code for fetch uid from database
-// $sql = "SELECT uid FROM signup WHERE uid = ?";
-// $stmt = $conn->prepare($sql);
-// $stmt->bind_param("s", $uid);
-// $stmt->execute();
-// $result = $stmt->get_result();
+include('connection.php');
+$sql = "SELECT * FROM final_payment WHERE uid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $uid);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// if ($result->num_rows > 0) {
-//     $row = $result->fetch_assoc();
-//     $_SESSION['uid'] = $row['uid'];
-//     $_SESSION['photo'] = $row["photo_path"];
-// } else {
-//     echo "0 results";
-// }
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $_SESSION['uid'] = $row['uid'];
+    $_SESSION['first_name'] = $row["first_name"];
+    $_SESSION['last_name'] = $row["last_name"];
+    $_SESSION['batchtime'] = $row["batchtime"];
+    $_SESSION['batchfee'] = $row["batchfee"];
+
+} else {
+    echo "0 results";
+}
 
 //code for fetch all data from database with uid
 
@@ -51,7 +64,7 @@ $permanent_address = $_SESSION['permanent_address'] ;
         // $stmt->close();
         // $conn->close();
 
-
+// }
 $currentDate = new DateTime();
 $currentDate->modify('+1 month');
 $formattedDate = $currentDate->format('d/m/Y');
@@ -120,7 +133,7 @@ border: 2px solid black;
                                 <div class="invoice-details mt25">
                                     <div class="well">
                                         <ul class="list-unstyled mb0">
-                                            <li><strong>UID Number:</strong>   <?php echo $uid; ?>
+                                            <li><strong>UID Number:</strong>   <?php echo $_SESSION['uid']; ?>
                                             </li>
                                             <li><strong>Status:</strong> <span class="label label-danger">PAID</span></li>
                                         </ul>
@@ -128,9 +141,9 @@ border: 2px solid black;
                                 </div>
                                 <div class="invoice-to mt25">
                                     <ul class="list-unstyled">
-                                        <li><strong>Invoiced To:</strong> <?php echo $first_name . ' ' . $last_name; ?></li>
+                                        <li><strong>Invoiced To:</strong> <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?></li>
                                         <li><strong>Permanent Address:</strong>   
-                                        <?php echo $permanent_address; ?>  
+                                        <?php echo $_SESSION['permanent_address']; ?>  
                                      </li>
                                     </ul>
                                 </div>
@@ -147,8 +160,8 @@ border: 2px solid black;
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Batch Booked Fee with time  <?php echo $batchtime; ?></td>
-                                                    <td><?php echo $batchfee; ?>
+                                                    <td>Batch Booked Fee with time  <?php echo $_SESSION['batchtime']; ?></td>
+                                                    <td><?php echo $_SESSION['batchfee']; ?>
                                                     </td>
                                                 </tr>
                                             
