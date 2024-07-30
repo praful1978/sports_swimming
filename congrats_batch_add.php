@@ -76,7 +76,7 @@
 
 <div id="dialog-overlay"></div>
 <div id="congrats-dialog">
-<form id="myForm" method="post" action="payment_confirmation.php">
+<form id="myForm" method="post" action="final_payment_save.php">
 <input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>' hidden >
    <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' hidden/>
    <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' hidden/>

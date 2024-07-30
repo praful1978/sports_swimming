@@ -1,31 +1,6 @@
 <?php
 session_start();
 
-
-// if (isset($_POST["submit"])) {
-//     $_SESSION['uid'] = $_POST['uid'];
-//     $_SESSION['first_name'] = $_POST['first_name'];
-//     $_SESSION['last_name'] = $_POST['last_name'];
-//     $_SESSION['batchtime'] = $_POST['batchtime'];
-//     $_SESSION['batchfee'] = $_POST['batchfee'];
-//     $_SESSION['transactionid'] = $_POST['transactionid'];
-   
-
-// echo $_SESSION['batchtime'];
-// echo $_SESSION['batchfee'];
-// echo  $_SESSION['transactionid'];
-// $permanent_address = $_SESSION['permanent_address'] ; 
-    // Sanitize input variables
-
-    //  $uid = $conn->real_escape_string($uid);
-    // $first_name = $conn->real_escape_string($first_name);
-    // $last_name = $conn->real_escape_string($last_name);
-    // $batchtime = $conn->real_escape_string($batchtime);
-    // $batchfee = $conn->real_escape_string($batchfee);
-    // $paymentid = $conn->real_escape_string($transactionid);
-    // $permanent_address =$conn->real_escape_string($permanent_address);
- // Include database connection
-// code for fetch uid from database
 include('connection.php');
 $sql = "SELECT * FROM final_payment WHERE uid = ?";
 $stmt = $conn->prepare($sql);
