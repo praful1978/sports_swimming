@@ -1,4 +1,5 @@
 <?php
+session_start();
  if (isset($_POST["submit"])) {
     // Store form data in session variables
     $_SESSION['uid'] = $_POST['uid'];
