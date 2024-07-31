@@ -1,5 +1,18 @@
 
+<?php
+session_start();
 
+// Check if session variables are set
+if (!isset($_SESSION['uid'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['batchtime'], $_SESSION['batchfee'], $_SESSION['transactionid'])) {
+    die("Required session variables are not set.");
+}
+        $_SESSION['uid'] = $_POST['uid'];
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
+        $_SESSION['batch_time'] = $row['batch_time'];
+        $_SESSION['batch_fee'] = $row['batch_fee'];
+        $_SESSION['transactionid'] = $row['payement_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,9 +92,9 @@
 <div id="dialog-overlay"></div>
 <div id="congrats-dialog">
 <form id="myForm" method="post" action="final_save.php">
-<input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>' hidden >
-   <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' hidden/>
-   <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' hidden/>
+<input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>'  >
+   <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' />
+   <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' />
 
    <input type="text" id="batch_time" name="batchtime">
    <input type="text" id="batch_fee" name="batchfee" >
