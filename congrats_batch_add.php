@@ -1,6 +1,7 @@
 
 <?php
-ob_start(); // Start output buffering
+session_start();
+
 
 // Retrieve session variables
 $uid = $_SESSION['uid'];
@@ -24,7 +25,7 @@ $uid = $_SESSION['uid'];
 
         // Redirect to card.php
         header('Location: final_save.php');
-        exit(); // Make sure to exit after redirection
+
     } else {
         echo "No records found.";
     }
@@ -35,8 +36,7 @@ $uid = $_SESSION['uid'];
 
 // Close the database connection
 $conn->close();
-    // Flush output buffer
-    ob_end_flush();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
