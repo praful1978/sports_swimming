@@ -10,14 +10,7 @@ include'connection.php';
 $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id) 
         VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
-
 $stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid);
-
-    // Flush output buffer
-
 $sql = "SELECT * FROM final_payment WHERE uid = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $uid);
