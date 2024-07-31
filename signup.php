@@ -2,7 +2,7 @@
 
 // Start the session and output buffering
 session_start();
-ob_start(); 
+ob_start(); // Start output buffering
     // Import PHPMailer classes into the global namespace for email sms sending
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -144,63 +144,85 @@ if (isset($_POST["submit"])) {
     $month = $orderdate[1] + 1;
     $year = $orderdate[2];
     $expirydate = $day . "/" . $month . "/" . $year;
+    
 
-  // Database connection
-include 'connection.php';
-
-// Prepare the SQL statements
-$stmt1 = $conn->prepare("INSERT INTO registration (uid, first_name, last_name, mobile_number, payment, payment_date, transaction_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stmt2 = $conn->prepare("INSERT INTO signup (uid, first_name, last_name, gender, blood_group, mobile_number, user_relative, parents_mobile_number, email_address, birth, age, permanent_address, enrol_date, expiry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-// Bind parameters to the SQL statement
-$stmt1->bind_param("sssssss", $uid, $first_name, $last_name, $mobile_number, $amount, $payment_date, $transaction_id);
-$stmt2->bind_param("ssssssssssssss", $uid, $first_name, $last_name, $gender, $bloodgroup, $mobile_number, $relative, $parents_num, $email_address, $birth, $age, $permanent_address, $currentDate, $expirydate);
-
-// Execute the first prepared statement
-$success1 = $stmt1->execute();
-if (!$success1) {
-    die("Error executing first query: " . $stmt1->error);
-}
-
-// Execute the second prepared statement
-$success2 = $stmt2->execute();
-
-if ($success1 && $success2) {
-    // Registration successful
-    header("Location: success_reg.php");
-    exit(); // Ensure script stops after redirection
-} else {
-    // Check for duplicate entry error
-    if ($stmt2->errno == 1062) { // MySQL error code for duplicate entry
-        $errorMessage = "Error: Duplicate entry. This email or mobile number is already registered.";
-        echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-        header("Location: register_uid_number.php");
-        exit(); // Ensure script stops after redirection
-    } else {
-        // Other errors
-        $errorMessage = "Error updating record: " . $stmt2->error;
-        echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-        header("Location: register_uid_number.php");
-        exit(); // Ensure script stops after redirection
+    // Include the database connection
+    include 'connection.php';
+    
+    // Check database connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-}
+    
+    // Prepare SQL statements
+    $stmt1 = $conn->prepare("INSERT INTO registration (uid, first_name, last_name, mobile_number, payment, payment_date, transaction_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt2 = $conn->prepare("INSERT INTO signup (uid, first_name, last_name, gender, blood_group, mobile_number, user_relative, parents_mobile_number, email_address, birth, age, permanent_address, enrol_date, expiry) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    // Check if statements are prepared successfully
+    if (!$stmt1 || !$stmt2) {
+        die("Error preparing statements: " . $conn->error);
+    }
+    
+    // Bind parameters
+    $stmt1->bind_param("sssssss", $uid, $first_name, $last_name, $mobile_number, $amount, $payment_date, $transaction_id);
+    $stmt2->bind_param("ssssssssssssss", $uid, $first_name, $last_name, $gender, $bloodgroup, $mobile_number, $relative, $parents_num, $email_address, $birth, $age, $permanent_address, $currentDate, $expirydate);
+    
+    // Print input values for debugging
 
-// Close the prepared statements only if they were successfully created
-if ($stmt1) {
-    $stmt1->close();
-}
-if ($stmt2) {
-    $stmt2->close();
-}
+    
+    // Start transaction
+    $conn->begin_transaction();
+    
+    try {
+        // Execute first prepared statement
+        $success1 = $stmt1->execute();
+        if (!$success1) {
+            throw new Exception("Error executing first query: " . $stmt1->error);
+        }
+    
+        // Execute second prepared statement
+        $success2 = $stmt2->execute();
+        if (!$success2) {
+            throw new Exception("Error executing second query: " . $stmt2->error);
+        }
+    
+        // Commit transaction
+        $conn->commit();
+        
+        // Redirect to success page
+        header("Location: success_reg.php");
+        exit();
+    } catch (Exception $e) {
+        // Rollback transaction in case of error
+        $conn->rollback();
+        
+        // Determine the type of error
+        if ($stmt2->errno == 1062) { // MySQL error code for duplicate entry
+            $errorMessage = "Error: Duplicate entry. This email or mobile number is already registered.";
+        } else {
+            $errorMessage = $e->getMessage();
+        }
+        
+        // Output error message and redirect
+        echo "<script type='text/javascript'>alert('$errorMessage');</script>";
+        header("Location: success_reg.php");
+        exit();
+    }
+    
+    // Close prepared statements
+    if ($stmt1) {
+        $stmt1->close();
+    }
+    if ($stmt2) {
+        $stmt2->close();
+    }
+    
+    // Close database connection
+    $conn->close();
+    
+    // Flush output buffer
+    ob_end_flush();
 
-// Close the database connection
-$conn->close();
-ob_end_flush(); // Flush output buffer and send output
-
-if ($errorMessage) {
-echo "<script type='text/javascript'>alert('$errorMessage');</script>";
-}
-
-ob_end_flush(); // Flush output buffer and send output
+    
 }
 ?>

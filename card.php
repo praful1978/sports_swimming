@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$uid=$_SESSION['uid'];
 include('connection.php');
 $sql = "SELECT * FROM final_payment WHERE uid = ?";
 $stmt = $conn->prepare($sql);
@@ -13,8 +13,7 @@ if ($result->num_rows > 0) {
     $_SESSION['uid'] = $row['uid'];
     $_SESSION['first_name'] = $row["first_name"];
     $_SESSION['last_name'] = $row["last_name"];
-    $_SESSION['batchtime'] = $row["batchtime"];
-    $_SESSION['batchfee'] = $row["batchfee"];
+
 
 } else {
     echo "0 results";
@@ -135,8 +134,8 @@ border: 2px solid black;
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Batch Booked Fee with time  <?php echo $_SESSION['batchtime']; ?></td>
-                                                    <td><?php echo $_SESSION['batchfee']; ?>
+                                                    <td>Batch Booked Fee with time  <?php echo $row['batch_time']; ?></td>
+                                                    <td><?php echo $row['batch_fee']; ?>
                                                     </td>
                                                 </tr>
                                             

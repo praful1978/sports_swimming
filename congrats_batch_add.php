@@ -1,3 +1,37 @@
+<?php
+session_start();
+$uid= $_SESSION['uid'] ;
+ 
+include('connection.php');
+$sql = "SELECT * FROM final_payment WHERE uid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $uid);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $_SESSION['uid'] = $row['uid'];
+    $_SESSION['first_name']= $row['first_name']  ;
+    $_SESSION['last_name']= $row['last_name']  ;
+    $_SESSION['batch_time']= $row['batch_time'] ; 
+    $_SESSION['batch_fee']= $row['batch_fee'] ; 
+    $_SESSION['transactionid']= $row['payement_id'];
+    $_SESSION['permanent_address'] = $row["permanent_address"];
+
+    // echo   $_SESSION['uid']  ;
+    // echo $_SESSION['first_name']  ;
+    // echo $_SESSION['last_name']  ;
+    // echo  $_SESSION['batchtime'] ; 
+    // echo  $_SESSION['batchfee'] ; 
+    // echo  $_SESSION['transactionid'];
+
+} else {
+    echo "0 results";
+}
+
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,9 +115,9 @@
    <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' hidden/>
    <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' hidden/>
 
-   <input type="text" id="batch_time" name="batchtime" hidden >
-   <input type="text" id="batch_fee" name="batchfee" hidden >
-   <input type="text" id="transactionid" name="transactionid" hidden>
+   <input type="text" id="batch_time" name="batchtime">
+   <input type="text" id="batch_fee" name="batchfee" >
+   <input type="text" id="transactionid" name="transactionid">
     <h2>Congratulations!</h2>
     <img src="buckey.png" alt="Bouquet of Flowers">
     <p id="congrats-message">You have achieved a great milestone.</p>

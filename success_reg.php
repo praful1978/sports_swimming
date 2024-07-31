@@ -37,7 +37,6 @@ if (isset($_POST["submit"])) {
                     </div>
                     <div class="modal-body">
                         <div class="thank-you-pop">
-                            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="Success">
                             <h1>Congratulations, You are registered for Swimming!</h1>
                             <p>Now login and Book Your Batch</p>
                             <h3 class="cupon-pop">Your UID is: <span><strong><?php echo  $_SESSION['uid']; ?></strong></span></h3>

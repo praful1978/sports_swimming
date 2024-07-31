@@ -2,7 +2,11 @@
 session_start();
  
 $uid =$_SESSION['uid'];
- 
+$first_name =$_SESSION['first_name'];
+$last_name =$_SESSION['last_name'];
+
+$mobile_number =$_SESSION['mobile_number'];
+
  
 include("connection.php");
 // // Prepare and bind the SQL query with a placeholder for the UID
@@ -29,7 +33,7 @@ if ($result->num_rows > 0) {
         $mobile_number =$row['mobile_number'];
         $age = $row['age'];
         $enrol_date = $row['enrol_date'];
-        $expiry_date = $row['expiry_date'];
+        $expiry_date = $row['expiry'];
             
         // You can output other columns as needed
     }
@@ -37,7 +41,7 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-// Close statement
+
 $stmt->close();
 
 // Close connection
@@ -96,9 +100,7 @@ $conn->close();
                 <div class="well">
                     <ul class="list-unstyled mb0">
                         <li>
-                            <!-- <div class="invoice-logo">
-                                <img width="100" src="<?php echo "../" . $_SESSION['photo']; ?>" alt="Invoice logo">
-                            </div> -->
+
                         </li>
                         <ul class="list-unstyled text-right">
                             <li>District Sports Office, Yavatmal</li>
