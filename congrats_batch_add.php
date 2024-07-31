@@ -8,7 +8,7 @@ $batchfee = $_SESSION['batchfee'];
 $paymentid = $_SESSION['transactionid'];
 include'connection.php';
 $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Prepare failed: " . $conn->error);
