@@ -1,6 +1,8 @@
 <?php
 session_start();
- if (isset($_POST["submit"])) {
+
+// Check if the form was submitted
+if (isset($_POST["submit"])) {
     // Store form data in session variables
     $_SESSION['uid'] = $_POST['uid'];
     $_SESSION['first_name'] = $_POST['firstname'];
@@ -8,45 +10,59 @@ session_start();
     $_SESSION['batchtime'] = $_POST['batchtime'];
     $_SESSION['batchfee'] = $_POST['batchfee'];
     $_SESSION['transactionid'] = $_POST['transactionid'];
- 
- }
- 
-  include('connection.php');
- $uid = $_POST['uid'];
+}
+
+include('connection.php');
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare and execute the query to fetch user data
+$uid = $_POST['uid'];
 $sql = "SELECT * FROM signup WHERE uid = ?";
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
 $stmt->bind_param("s", $uid);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $uid = $row['uid'];
     $permanent_address = $row["permanent_address"];
+} else {
+    die("No records found for UID: $uid");
+}
 
-} 
-    // Assign session variables to local variables
-    $uid = $_POST['uid'];
-    $first_name = $_POST['firstname'];
-    $last_name = $_POST['lastname'];
-    $batchtime = $_POST['batchtime'];
-    $batchfee = $_POST['batchfee'];
-    $paymentid = $_POST['transactionid'];
-    // $permanent_address =$_SESSION['permanent_address'];
-    // Prepare SQL query
-    $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id,permanent_address) 
-            VALUES ('$uid', '$first_name', '$last_name', '$batchtime', '$batchfee', '$paymentid','$permanent_address')";
+// Assign session variables to local variables
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
+$batchtime = $_SESSION['batchtime'];
+$batchfee = $_SESSION['batchfee'];
+$paymentid = $_SESSION['transactionid'];
 
-    // Execute SQL query and check for errors
-    if ($conn->query($sql) === TRUE) {
+// Prepare SQL query for insertion
+$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id, permanent_address) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
 
-        header('Location: card.php');
-      
-    } else {
-      echo "Error updating record: " . mysqli_error($conn);
-    }
+$stmt->bind_param("sssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid, $permanent_address);
 
-    // Close the database connection
-    $conn->close();
-// }
+// Execute the query and check for errors
+if ($stmt->execute()) {
+    header('Location: card.php');
+    exit(); // Make sure to exit after redirection
+} else {
+    die("Error inserting record: " . $stmt->error);
+}
+
+// Close the database connection
+$conn->close();
 ?>
