@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-echo $_SESSION['uid'];
+ob_start(); // Start output buffering
 // Assign session variables to local variables
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
 $batchtime = $_SESSION['batchtime'];
 $batchfee = $_SESSION['batchfee'];
 $paymentid = $_SESSION['transactionid'];
-ob_start(); // Start output buffering
+
 // Check if the form was submitted
 if (isset($_POST["submit"])) {
     // Store form data in session variables
@@ -29,7 +29,7 @@ if ($conn->connect_error) {
 }
 
 // Prepare and execute the query to fetch user data
-$uid = $_POST['uid'];
+$uid = $_SESSION['uid'];
 $sql = "SELECT * FROM signup WHERE uid = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
