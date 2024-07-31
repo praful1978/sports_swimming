@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
 
 }
 
-include('connection.php');
+include'connection.php';
 
 // Check if the connection was successful
 if ($conn->connect_error) {
