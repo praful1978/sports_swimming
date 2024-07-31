@@ -2,9 +2,9 @@
 session_start();
 ob_start(); // Start output buffering
 // Check if session variables are set
-// if (!isset($_SESSION['uid'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['batchtime'], $_SESSION['batchfee'], $_SESSION['transactionid'])) {
-//     die("Required session variables are not set.");
-// }
+if (!isset($_SESSION['uid'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['batchtime'], $_SESSION['batchfee'], $_SESSION['transactionid'])) {
+    die("Required session variables are not set.");
+}
 
 // Retrieve session variables
 $uid = $_SESSION['uid'];
