@@ -1,5 +1,11 @@
 <?php
 session_start();
+// Assign session variables to local variables
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
+$batchtime = $_SESSION['batchtime'];
+$batchfee = $_SESSION['batchfee'];
+$paymentid = $_SESSION['transactionid'];
 ob_start(); // Start output buffering
 // Check if the form was submitted
 if (isset($_POST["submit"])) {
@@ -38,12 +44,7 @@ if ($result->num_rows > 0) {
     die("No records found for UID: $uid");
 }
 
-// Assign session variables to local variables
-$first_name = $_SESSION['first_name'];
-$last_name = $_SESSION['last_name'];
-$batchtime = $_SESSION['batchtime'];
-$batchfee = $_SESSION['batchfee'];
-$paymentid = $_SESSION['transactionid'];
+
 
 // Prepare SQL query for insertion
 $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id, permanent_address) 
