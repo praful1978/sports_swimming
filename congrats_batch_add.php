@@ -1,8 +1,46 @@
 <?php
 session_start();
 $uid= $_SESSION['uid'] ;
- 
-include('connection.php');
+include'connection.php';
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare and execute the query to fetch user data
+$uid = $_SESSION['uid'];
+$sql = "SELECT * FROM signup WHERE uid = ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("s", $uid);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $permanent_address = $row["permanent_address"];
+} else {
+    die("No records found for UID: $uid");
+}
+
+
+
+// Prepare SQL query for insertion
+$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id, permanent_address) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("sssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid, $permanent_address);
+
+    // Flush output buffer
+include'connection.php';
 $sql = "SELECT * FROM final_payment WHERE uid = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $uid);
@@ -19,18 +57,24 @@ if ($result->num_rows > 0) {
     $_SESSION['transactionid']= $row['payement_id'];
     $_SESSION['permanent_address'] = $row["permanent_address"];
 
-    // echo   $_SESSION['uid']  ;
-    // echo $_SESSION['first_name']  ;
-    // echo $_SESSION['last_name']  ;
-    // echo  $_SESSION['batchtime'] ; 
-    // echo  $_SESSION['batchfee'] ; 
-    // echo  $_SESSION['transactionid'];
 
+// Execute the query and check for errors
+if ($stmt->execute()) {
+    header('Location: card.php');
+    exit(); // Make sure to exit after redirection
 } else {
-    echo "0 results";
+    die("Error inserting record: " . $stmt->error);
 }
 
-// }
+// Close the prepared statement
+if ($stmt) {
+    $stmt->close();
+}
+
+// Close the database connection if it's a valid mysqli object
+if ($conn instanceof mysqli) {
+    $conn->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
