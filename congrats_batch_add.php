@@ -1,4 +1,8 @@
+<?php
+session_start();
+$uid = $_SESSION['uid'];
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
