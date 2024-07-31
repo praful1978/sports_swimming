@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+echo $_SESSION['uid'];
 // Assign session variables to local variables
 $first_name = $_SESSION['first_name'];
 $last_name = $_SESSION['last_name'];
@@ -16,7 +18,7 @@ if (isset($_POST["submit"])) {
     $_SESSION['batchtime'] = $_POST['batchtime'];
     $_SESSION['batchfee'] = $_POST['batchfee'];
     $_SESSION['transactionid'] = $_POST['transactionid'];
-    echo $_SESSION['uid'];
+
 }
 
 include('connection.php');
