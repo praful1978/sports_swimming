@@ -2,16 +2,13 @@
 <?php
 session_start();
 
-// Check if session variables are set
-if (!isset($_SESSION['uid'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['batchtime'], $_SESSION['batchfee'], $_SESSION['transactionid'])) {
-    die("Required session variables are not set.");
-}
+
         $_SESSION['uid'] = $_POST['uid'];
-        $_SESSION['first_name'] = $row['first_name'];
-        $_SESSION['last_name'] = $row['last_name'];
-        $_SESSION['batch_time'] = $row['batch_time'];
-        $_SESSION['batch_fee'] = $row['batch_fee'];
-        $_SESSION['transactionid'] = $row['payement_id'];
+        $_SESSION['first_name'] =$_POST['first_name'];
+        $_SESSION['last_name'] = $_POST['last_name'];
+        $_SESSION['batch_time'] = $_POST['batch_time'];
+        $_SESSION['batch_fee'] = $_POST['batch_fee'];
+        $_SESSION['transactionid'] = $_POST['payement_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
