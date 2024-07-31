@@ -82,13 +82,13 @@ $uid = $_SESSION['uid'];
 <div id="dialog-overlay"></div>
 <div id="congrats-dialog">
 <form id="myForm" method="post" action="final_save.php">
-<input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>'  >
-   <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' />
-   <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' />
+<input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>' hidden >
+   <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' hidden />
+   <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' hidden />
 
-   <input type="text" id="batch_time" name="batchtime">
-   <input type="text" id="batch_fee" name="batchfee" >
-   <input type="text" id="transactionid" name="transactionid">
+   <input type="text" id="batch_time" name="batchtime" hidden >
+   <input type="text" id="batch_fee" name="batchfee" hidden >
+   <input type="text" id="transactionid" name="transactionid" hidden >
     <h2>Congratulations!</h2>
     <img src="buckey.png" alt="Bouquet of Flowers">
     <p id="congrats-message">You have achieved a great milestone.</p>

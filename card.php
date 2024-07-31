@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
     $_SESSION['first_name'] = $row['first_name'];
     $_SESSION['last_name'] = $row['last_name'];
     // Optionally print out the data for debugging
-    print_r($row);
+
 } else {
     echo "0 results";
 }

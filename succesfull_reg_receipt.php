@@ -86,6 +86,9 @@ $conn->close();
       <nav id="navbar" class="navbar">
         <ul>
            <li><a href="logout.php" class="nav-link scrollto active btn-primary">Logout</a></li>
+           </ul>
+           <ul>
+           <li><a href="login_with_uid.php" class="nav-link scrollto active btn-primary">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

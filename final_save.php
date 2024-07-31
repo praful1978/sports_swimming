@@ -17,7 +17,7 @@ if (!$uid) {
 $sql = "SELECT * FROM signup WHERE uid = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
+    die("Prepare failed for SELECT query: " . $conn->error);
 }
 
 $stmt->bind_param("s", $uid);
@@ -42,11 +42,16 @@ $batchfee = $_POST['batchfee'] ?? '';
 $paymentid = $_POST['transactionid'] ?? '';
 
 // Prepare and execute the INSERT statement
-$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payment_id) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 
+if (!$stmt) {
+    die("Prepare failed for INSERT query: " . $conn->error);
+}
 
-$stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid);
+if (!$stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid)) {
+    die("Bind param failed: " . $stmt->error);
+}
 
 if ($stmt->execute()) {
     // Success message or redirection
