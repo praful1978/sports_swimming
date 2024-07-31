@@ -11,13 +11,28 @@ $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch
         VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid);
-$sql = "SELECT * FROM final_payment WHERE uid = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $uid);
-$stmt->execute();
-$result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
+// Close the prepared statement
+if ($stmt) {
+    $stmt->close();
+}
+
+// Close the database connection if it's a valid mysqli object
+if ($conn instanceof mysqli) {
+    $conn->close();
+}
+
+
+
+include'connection.php';
+$sql_i = "SELECT * FROM final_payment WHERE uid = ?";
+$stmt_i = $conn->prepare($sql_i);
+$stmt_i->bind_param("s", $uid);
+$stmt_i->execute();
+$result_i = $stmt_i->get_result();
+
+
+if ($result_i->num_rows > 0) {
     $row = $result->fetch_assoc();
     $_SESSION['uid'] = $row['uid'];
     $_SESSION['first_name']= $row['first_name']  ;
@@ -29,7 +44,7 @@ if ($result->num_rows > 0) {
 
 
 // Execute the query and check for errors
-if ($stmt->execute()) {
+if ($stmt_i->execute()) {
     header('Location: card.php');
     exit(); // Make sure to exit after redirection
 } else {
@@ -37,8 +52,8 @@ if ($stmt->execute()) {
 }
 
 // Close the prepared statement
-if ($stmt) {
-    $stmt->close();
+if ($stmt_i) {
+    $stmt_i->close();
 }
 
 // Close the database connection if it's a valid mysqli object
