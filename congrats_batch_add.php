@@ -132,7 +132,7 @@ if ($conn instanceof mysqli) {
 
 <div id="dialog-overlay"></div>
 <div id="congrats-dialog">
-<form id="myForm" method="post" action="card.php">
+<form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 <input type="text" id="uid" name="uid" value='<?php echo $_SESSION['uid']; ?>' hidden >
    <input type="text" id="first_name" name="firstname" value='<?php echo $_SESSION['first_name']; ?>' hidden/>
    <input type="text" id="last_name" name="lastname" value='<?php echo $_SESSION['last_name']; ?>' hidden/>
