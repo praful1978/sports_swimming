@@ -1,44 +1,55 @@
 <?php
-session_start();
-$uid=$_SESSION['uid'];
-include'connection.php';
+<?php
+session_start(); // Ensure session is started
+
+// Check if session UID is set
+if (!isset($_SESSION['uid'])) {
+    die("Session UID is not set.");
+}
+
+$uid = $_SESSION['uid'];
+
+// Include database connection
+include 'connection.php';
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare SQL statement
 $sql = "SELECT * FROM final_payment WHERE uid = ?";
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+// Bind parameters
 $stmt->bind_param("s", $uid);
 $stmt->execute();
-$result = $stmt->get_result();
 
+// Get results
+$result = $stmt->get_result();
+if (!$result) {
+    die("Error getting result: " . $stmt->error);
+}
+
+// Fetch data
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $_SESSION['uid'] = $row['uid'];
-    $_SESSION['first_name'] = $row["first_name"];
-    $_SESSION['last_name'] = $row["last_name"];
-
-
+    $_SESSION['first_name'] = $row['first_name'];
+    $_SESSION['last_name'] = $row['last_name'];
+    // Optionally print out the data for debugging
+    print_r($row);
 } else {
     echo "0 results";
 }
 
-//code for fetch all data from database with uid
+// Close the statement and connection
+$stmt->close();
+$conn->close();
 
-        // $sql = "SELECT * FROM signup WHERE uid = ?";
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bind_param("s", $uid);
-        // $stmt->execute();
-        // $result = $stmt->get_result();
-
-        // if ($result->num_rows > 0) {
-        //     $row = $result->fetch_assoc();
-        //     $_SESSION['uid'] = $row['uid'];
-        //     $_SESSION['photo'] = "/photo/" . $row["photo_path"];
-        // } else {
-        //     echo "0 results";
-        // }
-
-        // $stmt->close();
-        // $conn->close();
-
-// }
 $currentDate = new DateTime();
 $currentDate->modify('+1 month');
 $formattedDate = $currentDate->format('d/m/Y');
