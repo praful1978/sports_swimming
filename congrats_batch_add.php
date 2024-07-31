@@ -1,7 +1,5 @@
 
-
 <?php
-session_start();
 ob_start(); // Start output buffering
 
 // Retrieve session variables
