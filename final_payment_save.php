@@ -63,6 +63,13 @@ if ($stmt->execute()) {
     die("Error inserting record: " . $stmt->error);
 }
 
-// Close the database connection
-$conn->close();
+// Close the prepared statement
+if ($stmt) {
+    $stmt->close();
+}
+
+// Close the database connection if it's a valid mysqli object
+if ($conn instanceof mysqli) {
+    $conn->close();
+}
 ?>
