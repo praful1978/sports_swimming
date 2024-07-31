@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+ob_start(); // Start output buffering
 // Check if the form was submitted
 if (isset($_POST["submit"])) {
     // Store form data in session variables
@@ -72,4 +72,6 @@ if ($stmt) {
 if ($conn instanceof mysqli) {
     $conn->close();
 }
+    // Flush output buffer
+    ob_end_flush();
 ?>
