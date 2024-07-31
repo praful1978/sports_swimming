@@ -34,7 +34,7 @@ $stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee
 
 if ($stmt->execute()) {
     // Success message or redirection
-    header("Location: fetch_final_data.php");
+    header("Location: card.php");
 } else {
     die("Error inserting record: " . $stmt->error);
 }
