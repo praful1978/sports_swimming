@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['uid'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['batchtime'], $_SESSION['batchfee'], $_SESSION['transactionid'])) {
     die("Required session variables are not set.");
 }
-
+include 'fetch_data_signup.php';
 // Retrieve session variables
 $uid = $_SESSION['uid'];
 $first_name = $_SESSION['first_name'];

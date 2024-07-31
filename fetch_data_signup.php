@@ -30,11 +30,6 @@ $uid = $_SESSION['uid'];
         echo "No records found.";
     }
 
-    // Close the prepared statement
-    $stmt->close();
 
-
-// Close the database connection
-$conn->close();
 
 ?>
