@@ -25,14 +25,14 @@ if ($conn instanceof mysqli) {
 
 
 include'connection.php';
-$sql_i = "SELECT * FROM final_payment WHERE uid = ?";
-$stmt_i = $conn->prepare($sql_i);
-$stmt_i->bind_param("s", $uid);
-$stmt_i->execute();
-$result_i = $stmt_i->get_result();
+$sql = "SELECT * FROM final_payment WHERE uid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $uid);
+$stmt->execute();
+$result = $stmt->get_result();
 
 
-if ($result_i->num_rows > 0) {
+if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $_SESSION['uid'] = $row['uid'];
     $_SESSION['first_name']= $row['first_name']  ;
@@ -44,7 +44,7 @@ if ($result_i->num_rows > 0) {
 
 
 // Execute the query and check for errors
-if ($stmt_i->execute()) {
+if ($stmt->execute()) {
     header('Location: card.php');
     exit(); // Make sure to exit after redirection
 } else {
@@ -52,8 +52,8 @@ if ($stmt_i->execute()) {
 }
 
 // Close the prepared statement
-if ($stmt_i) {
-    $stmt_i->close();
+if ($stmt) {
+    $stmt->close();
 }
 
 // Close the database connection if it's a valid mysqli object
