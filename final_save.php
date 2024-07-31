@@ -44,9 +44,7 @@ $paymentid = $_POST['transactionid'] ?? '';
 // Prepare and execute the INSERT statement
 $sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payment_id) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
+
 
 $stmt->bind_param("ssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid);
 
