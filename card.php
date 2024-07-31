@@ -1,5 +1,4 @@
 <?php
-<?php
 session_start(); // Ensure session is started
 
 // Check if session UID is set
