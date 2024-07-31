@@ -1,43 +1,20 @@
 <?php
 session_start();
 $uid= $_SESSION['uid'] ;
+$first_name = $_SESSION['first_name'];
+$last_name = $_SESSION['last_name'];
+$batchtime = $_SESSION['batchtime'];
+$batchfee = $_SESSION['batchfee'];
+$paymentid = $_SESSION['transactionid'];
 include'connection.php';
-
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Prepare and execute the query to fetch user data
-$uid = $_SESSION['uid'];
-$sql = "SELECT * FROM signup WHERE uid = ?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
-
-$stmt->bind_param("s", $uid);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $permanent_address = $row["permanent_address"];
-} else {
-    die("No records found for UID: $uid");
-}
-
-
-
-// Prepare SQL query for insertion
-$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id, permanent_address) 
+$sql = "INSERT INTO final_payment (uid, first_name, last_name, batch_time, batch_fee, payement_id) 
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     die("Prepare failed: " . $conn->error);
 }
 
-$stmt->bind_param("sssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid, $permanent_address);
+$stmt->bind_param("sssssss", $uid, $first_name, $last_name, $batchtime, $batchfee, $paymentid);
 
     // Flush output buffer
 include'connection.php';
@@ -55,7 +32,7 @@ if ($result->num_rows > 0) {
     $_SESSION['batch_time']= $row['batch_time'] ; 
     $_SESSION['batch_fee']= $row['batch_fee'] ; 
     $_SESSION['transactionid']= $row['payement_id'];
-    $_SESSION['permanent_address'] = $row["permanent_address"];
+    // $_SESSION['permanent_address'] = $row["permanent_address"];
 
 
 // Execute the query and check for errors
@@ -74,6 +51,7 @@ if ($stmt) {
 // Close the database connection if it's a valid mysqli object
 if ($conn instanceof mysqli) {
     $conn->close();
+}
 }
 ?>
 <!DOCTYPE html>
