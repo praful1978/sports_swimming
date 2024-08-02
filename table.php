@@ -88,46 +88,61 @@
     <button id="payButton" class="btn btn-primary">Pay Registraion Fee rs. 100/-</button>
 </div>
     
-        <script>
-        // Initialize Razorpay
-        var options_100 = {
-            "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
-            "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
-            "currency": "INR", // Currency
-            "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
-            "description": "SWIMMING BATCH BOOKING",
-            "handler": function (response){
-               
-              localStorage.setItem("Transaction ID", response.razorpay_payment_id);
-     
-              localStorage.setItem("Registration Fee", "100");
-              const date = new Date();
- 
-              localStorage.setItem("Registration Date", date.toString());
- 
-              window.location.href = "register_uid_number.php"; // Change this to your desired URL
-            },
-            "prefill": {
-                "name": "first_name" + "last_name",
-                "mobile number": "mobile_number"
-            },
-            "theme": {
-                "color": "#3399cc" // Change according to your theme color
+<script>
+      var options_100 = {
+    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
+    "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
+    "currency": "INR", // Currency
+    "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
+    "description": "SWIMMING BATCH BOOKING",
+    "handler": function (response){
+        // Payment was successful
+        localStorage.setItem("Transaction ID", response.razorpay_payment_id);
+        localStorage.setItem("Registration Fee", "100");
+        const date = new Date();
+        localStorage.setItem("Registration Date", date.toString());
+
+        // Send payment details to your server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "save_payment.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("payment_id=" + response.razorpay_payment_id + "&amount=100");
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                window.location.href = "register_uid_number.php";
+            } else {
+                alert("Failed to save payment details. Please try again.");
             }
         };
-
-        // Function to trigger payment
-        document.getElementById('payButton').onclick = function(){
-            var rzp = new Razorpay(options_100);
-            rzp.open();
+    },
+    "prefill": {
+        "name": "first_name last_name",
+        "mobile number": "mobile_number"
+    },
+    "theme": {
+        "color": "#3399cc" // Change according to your theme color
+    },
+    "modal": {
+        "ondismiss": function() {
+            alert("Payment was not completed. Please try again.");
         }
-    </script>
+    }
+};
+
+// Function to trigger payment
+document.getElementById('payButton').onclick = function(){
+    var rzp = new Razorpay(options_100);
+    rzp.open();
+}
+
+</script>
  
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <!-- // Include Razorpay SDK in your HTML file -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-// Assuming you have defined razorpayKey somewhere in your code
+
 
 // Create a function to handle payment success
 function handlePaymentSuccess(response) {
