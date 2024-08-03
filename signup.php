@@ -199,6 +199,7 @@ if (isset($_POST["submit"])) {
         // Determine the type of error
         if ($stmt2->errno == 1062) { // MySQL error code for duplicate entry
             $errorMessage = "Error: Duplicate entry. This email or mobile number is already registered.";
+            echo '<script>alert("Error: Duplicate entry. This email or mobile number is already registered.");</script>';
         } else {
             $errorMessage = $e->getMessage();
         }

@@ -183,37 +183,54 @@ $uid = $_SESSION['uid'];
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
-        // Initialize Razorpay
-        var options_1200 = {
-            "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
-            "amount": 120000, // Amount in paise (e.g., 2000 paise = ₹20)
-            "currency": "INR", // Currency
-            "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
-            "description": "SWIMMING BATCH BOOKING",
-            "handler": function (response){
-              var batch_time ='<?php echo htmlspecialchars($selected_batch); ?>';
-              localStorage.setItem("Transaction ID", response.razorpay_payment_id);
-     
-              localStorage.setItem("Batch Fee", "1200");
-              localStorage.setItem("Batch Time", batch_time );
- 
-              window.location.href = "congrats_batch_add.php"; // Change this to your desired URL
-            },
-            "prefill": {
-                "name": "first_name" + "last_name",
-                "mobile number": "mobile_number"
-            },
-            "theme": {
-                "color": "#3399cc" // Change according to your theme color
+      var options_1200 = {
+    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "amount": 120000, // Amount in paise (e.g., 2000 paise = ₹20)
+    "currency": "INR", // Currency
+    "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
+    "description": "SWIMMING BATCH BOOKING",
+    "handler": function (response){
+        // Payment was successful
+        localStorage.setItem("Transaction ID", response.razorpay_payment_id);
+        localStorage.setItem("Registration Fee", "1200");
+        const date = new Date();
+        localStorage.setItem("Registration Date", date.toString());
+
+        // Send payment details to your server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "save_payment.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("payment_id=" + response.razorpay_payment_id + "&amount=1200");
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                window.location.href = "register_uid_number.php";
+            } else {
+                alert("Failed to save payment details. Please try again.");
             }
         };
-
-        // Function to trigger payment
-        document.getElementById('payButton_twelve_hundrade').onclick = function(){
-            var rzp = new Razorpay(options_1200);
-            rzp.open();
+    },
+    "prefill": {
+        "name": "first_name last_name",
+        "mobile number": "mobile_number"
+    },
+    "theme": {
+        "color": "#3399cc" // Change according to your theme color
+    },
+    "modal": {
+        "ondismiss": function() {
+            alert("Payment was not completed. Please try again.");
         }
-    </script>
+    }
+};
+
+// Function to trigger payment
+document.getElementById('payButton').onclick = function(){
+    var rzp = new Razorpay(options_1200);
+    rzp.open();
+}
+
+</script>
         </div>
       </div>
       </div>
@@ -236,38 +253,54 @@ $uid = $_SESSION['uid'];
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
-        // Initialize Razorpay
-        var options_1700 = {
-            "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
-            "amount": 170000, // Amount in paise (e.g., 2000 paise = ₹20)
-            "currency": "INR", // Currency
-            "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
-            "description": "SWIMMING BATCH BOOKING",
-            "handler": function (response){
-              var batch_time ='<?php echo htmlspecialchars($selected_batch); ?>';
-              localStorage.setItem("Transaction ID", response.razorpay_payment_id);
-                           localStorage.setItem("Batch Fee", "1700");
-              localStorage.setItem("Batch Time", batch_time );
-              // var batch_time =document.getElementById("selctedValue").innerHTML;
-              // localStorage.setItem("Batch time", batch_time );
-              // localStorage.setItem("mytime", Date.now());
-              window.location.href = "congrats_batch_add.php"; // Change this to your desired URL
-            },
-            "prefill": {
-                "name": "first_name" + "last_name",
-                "mobile number": "mobile_number"
-            },
-            "theme": {
-                "color": "#3399cc" // Change according to your theme color
+      var options_1700 = {
+    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "amount": 170000, // Amount in paise (e.g., 2000 paise = ₹20)
+    "currency": "INR", // Currency
+    "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
+    "description": "SWIMMING BATCH BOOKING",
+    "handler": function (response){
+        // Payment was successful
+        localStorage.setItem("Transaction ID", response.razorpay_payment_id);
+        localStorage.setItem("Registration Fee", "1200");
+        const date = new Date();
+        localStorage.setItem("Registration Date", date.toString());
+
+        // Send payment details to your server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "save_payment.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("payment_id=" + response.razorpay_payment_id + "&amount=1700");
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                window.location.href = "register_uid_number.php";
+            } else {
+                alert("Failed to save payment details. Please try again.");
             }
         };
-
-        // Function to trigger payment
-        document.getElementById('payButton_seventeen_hundrade').onclick = function(){
-            var rzp = new Razorpay(options_1700);
-            rzp.open();
+    },
+    "prefill": {
+        "name": "first_name last_name",
+        "mobile number": "mobile_number"
+    },
+    "theme": {
+        "color": "#3399cc" // Change according to your theme color
+    },
+    "modal": {
+        "ondismiss": function() {
+            alert("Payment was not completed. Please try again.");
         }
-    </script>
+    }
+};
+
+// Function to trigger payment
+document.getElementById('payButton').onclick = function(){
+    var rzp = new Razorpay(options_1700);
+    rzp.open();
+}
+
+</script>
         </div>
       </div>
     </div>

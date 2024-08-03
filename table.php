@@ -90,7 +90,7 @@
     
 <script>
       var options_100 = {
-    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
+    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
     "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",

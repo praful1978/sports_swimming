@@ -98,7 +98,7 @@ if (isset($_SESSION['uid'])) {
               
         <script type="text/javascript">   
           window.onload = function() {
-          var mobileNumber = "<?php echo"$mobile_number"?>";  // Replace "xxxxx1234" with the actual mobile number
+          var mobileNumber = "<?php echo "$mobile_number"?>";  // Replace "xxxxx1234" with the actual mobile number
           var lastFourDigits = mobileNumber.slice(-4);
           document.getElementById("lastFourDigits").innerText = "Last four digits of the mobile number: " + lastFourDigits;
       };
