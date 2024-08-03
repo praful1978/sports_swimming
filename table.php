@@ -88,7 +88,7 @@
     <button id="payButton" class="btn btn-primary">Pay Registraion Fee rs. 100/-</button>
 </div>
     
-<script>
+<!-- <script>
       var options_100 = {
     "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
     "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
@@ -134,9 +134,37 @@
 document.getElementById('payButton').onclick = function(){
     var rzp = new Razorpay(options_100);
     rzp.open();
+} 
+    </script>-->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options_100 = {
+    "key": "rzp_test_RUnr0KAH8Zi5tn", // Enter the Key ID generated from the Dashboard
+    "amount": "10000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp", //your business name
+    "description": "Test Transaction",
+    "image": "sportsicon1",
+    "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "register_uid_number.php",
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        "name": "first_name last_name",
+        "mobile number": "mobile_number"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options_100);
+document.getElementById('payButton').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
 }
-
 </script>
+
  
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <!-- // Include Razorpay SDK in your HTML file -->
