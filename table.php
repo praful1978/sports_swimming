@@ -87,7 +87,7 @@
     <!-- Payment Button -->
     <button id="payButton" class="btn btn-primary">Pay Registraion Fee rs. 100/-</button>
 </div>
-    
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
 <script>
       var options_100 = {
     "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
