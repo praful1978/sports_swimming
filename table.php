@@ -129,16 +129,12 @@
         }
     }
 };
-var rzp1 = new Razorpay(options_100);
-document.getElementById('payButton').onclick = function(e){
-    rzp1.open();
-    e.preventDefault();
+
+// Function to trigger payment
+document.getElementById('payButton').onclick = function(){
+    var rzp = new Razorpay(options_100);
+    rzp.open();
 }
-// // Function to trigger payment
-// document.getElementById('payButton').onclick = function(){
-//     var rzp = new Razorpay(options_100);
-//     rzp.open();
-// }
 
 </script>
  
