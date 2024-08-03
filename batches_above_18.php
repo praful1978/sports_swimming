@@ -148,7 +148,7 @@ $uid = $_SESSION['uid'];
   <!-- <link href="assets/css/main.css" rel="stylesheet"> -->
  <!-- payment link for razorpay -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
- <script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
+
 </head>
 <body onunload="fetchdata()">
  
