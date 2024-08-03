@@ -134,14 +134,13 @@
 document.getElementById('payButton').onclick = function(){
     var rzp = new Razorpay(options_100);
     rzp.open();
-} 
-    </script>
+}
 
-
+</script>
  
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <!-- // Include Razorpay SDK in your HTML file -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
 
 
