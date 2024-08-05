@@ -184,7 +184,7 @@ $uid = $_SESSION['uid'];
 
     <script>
       var options_1200 = {
-    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
     "amount": 120000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
@@ -254,7 +254,7 @@ document.getElementById('payButton').onclick = function(){
 
     <script>
       var options_1700 = {
-    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
     "amount": 170000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",

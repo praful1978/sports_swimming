@@ -185,7 +185,7 @@ $uid = $_SESSION['uid'];
 
     <script>
       var options_1000 = {
-    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
     "amount": 100000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
@@ -205,7 +205,7 @@ $uid = $_SESSION['uid'];
 
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
-                window.location.href = "register_uid_number.php";
+                window.location.href = "congrats_batch_add.php";
             } else {
                 alert("Failed to save payment details. Please try again.");
             }
@@ -254,7 +254,7 @@ document.getElementById('payButton').onclick = function(){
 
     <script>
       var options_1500 = {
-    "key": "rzp_test_RUnr0KAH8Zi5tn", // Add your Razorpay Key ID
+    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
     "amount": 150000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
@@ -274,7 +274,7 @@ document.getElementById('payButton').onclick = function(){
 
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
-                window.location.href = "register_uid_number.php";
+                window.location.href = "congrats_batch_add.php";
             } else {
                 alert("Failed to save payment details. Please try again.");
             }
