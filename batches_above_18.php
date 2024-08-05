@@ -204,7 +204,7 @@ $uid = $_SESSION['uid'];
 
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
-                window.location.href = "register_uid_number.php";
+                window.location.href = "congrats_batch_add.php";
             } else {
                 alert("Failed to save payment details. Please try again.");
             }
@@ -274,7 +274,7 @@ document.getElementById('payButton').onclick = function(){
 
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
-                window.location.href = "register_uid_number.php";
+                window.location.href = "congrats_batch_add.php";
             } else {
                 alert("Failed to save payment details. Please try again.");
             }
