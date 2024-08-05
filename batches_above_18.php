@@ -191,10 +191,11 @@ $uid = $_SESSION['uid'];
     "description": "SWIMMING BATCH BOOKING",
     "handler": function (response){
         // Payment was successful
-        localStorage.setItem("Transaction ID", response.razorpay_payment_id);
-        localStorage.setItem("Registration Fee", "1200");
-        const date = new Date();
-        localStorage.setItem("Registration Date", date.toString());
+        var batch_time ='<?php echo htmlspecialchars($selected_batch); ?>';
+              localStorage.setItem("Transaction ID", response.razorpay_payment_id);
+     
+              localStorage.setItem("Batch Fee", "1200");
+              localStorage.setItem("Batch Time", batch_time );
 
         // Send payment details to your server
         var xhr = new XMLHttpRequest();
@@ -261,10 +262,11 @@ document.getElementById('payButton_twelve_hundrade').onclick = function(){
     "description": "SWIMMING BATCH BOOKING",
     "handler": function (response){
         // Payment was successful
-        localStorage.setItem("Transaction ID", response.razorpay_payment_id);
-        localStorage.setItem("Registration Fee", "1200");
-        const date = new Date();
-        localStorage.setItem("Registration Date", date.toString());
+        var batch_time ='<?php echo htmlspecialchars($selected_batch); ?>';
+              localStorage.setItem("Transaction ID", response.razorpay_payment_id);
+     
+              localStorage.setItem("Batch Fee", "1700");
+              localStorage.setItem("Batch Time", batch_time );
 
         // Send payment details to your server
         var xhr = new XMLHttpRequest();
