@@ -225,7 +225,7 @@ $uid = $_SESSION['uid'];
 };
 
 // Function to trigger payment
-document.getElementById('payButton').onclick = function(){
+document.getElementById('payButton_twelve_hundrade').onclick = function(){
     var rzp = new Razorpay(options_1200);
     rzp.open();
 }
@@ -295,7 +295,7 @@ document.getElementById('payButton').onclick = function(){
 };
 
 // Function to trigger payment
-document.getElementById('payButton').onclick = function(){
+document.getElementById('payButton_seventeen_hundrade').onclick = function(){
     var rzp = new Razorpay(options_1700);
     rzp.open();
 }
