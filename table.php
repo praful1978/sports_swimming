@@ -85,12 +85,14 @@
 
     
     <!-- Payment Button -->
-    <button id="payButton" class="btn btn-primary">Pay Registraion Fee rs. 100/-</button>
+    <button id="payButton" class="btn btn-primary">Pay Registraion Fee rs. 100/-</button>\
+    <div> <a style=" width: 150px; background-color: #1CA953; text-align: center; font-weight: 800; padding: 11px 0px; color: white; font-size: 12px; 
+    display: inline-block; text-decoration: none; border-radius:3.229px; " href='https://test.payumoney.com/url/vIrhZPpESnSB' > Pay Now </a> </div>
 </div>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
 <script>
       var options_100 = {
-    "key": "rzp_test_Gv69T1SFBew7Oh", // Add your Razorpay Key ID
+    "key": "https://pmny.in/PI9TS9mLlu7m", // Add your Razorpay Key ID
     "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
