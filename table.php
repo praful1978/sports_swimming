@@ -92,7 +92,7 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
 <script>
       var options_100 = {
-    "key": "https://pmny.in/PI9TS9mLlu7m", // Add your Razorpay Key ID
+    "key": "8Wt5FC", // Add your Razorpay Key ID
     "amount": 10000, // Amount in paise (e.g., 2000 paise = ₹20)
     "currency": "INR", // Currency
     "name": "DISTRICT SPORTS OFFICE, SWIMMING POOL, YAVATMAL",
